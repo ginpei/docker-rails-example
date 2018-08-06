@@ -188,7 +188,7 @@ This may take long time. It depends on your network since `bundle install` runs 
 
 ## Database configuration
 
-Although we haven't get database ready yet, change rails configuration a little.
+Although we haven't got database ready yet, modify rails configuration a little.
 
 Change `host: localhost` to `host: db` in `app/config/database.yml`:
 
@@ -208,7 +208,7 @@ This `db` will be used in the next step as a service name in `docker-compose.yml
 
 Create a new file named `docker-compose.yml` as following:
 
-```docker-compose
+```yml
 version: "3"
 
 services:
@@ -231,6 +231,7 @@ services:
 ```
 
 This prepares a database for root user without password.
+It's dangerous in some cases but no problem for development.
 
 ## Ignore database files
 
@@ -273,6 +274,8 @@ Created database 'my-great-app_test'
 
 Open [`http://localhost:3000/`](http://localhost:3000/) and look at what you have done! Yay! You’re on Rails!
 
+![Welcome screen from Rails](doc/you-are-on-rails.png)
+
 # Up your project from the next time
 
 Now it's simple.
@@ -309,6 +312,8 @@ $ cd the-great-app
 $ docker build -t the-great-app .
 ```
 
+The name `the-great-app` has to match with the image name in `docker-compose.yml`.
+
 It would be better to make the image available in DockerHub so that this step would be skipped.
 
 ## Up
@@ -326,6 +331,10 @@ Open another console and run:
 ```console
 $ docker-component exec rails rake db:create db:migrate db:seed
 ```
+
+## Open in browser
+
+Open [`http://localhost:3000/`](http://localhost:3000/) and start your job.
 
 # Update your project
 
@@ -382,10 +391,10 @@ Finished in 1.302024s, 5.3762 runs/s, 6.9123 assertions/s.
 
 ## When you added new gems
 
-When you update `Gemfile`, you have to rebuild your image instead of running `bundle install`.
+When you update `Gemfile`, you used to run `bundle install`.
+
+With Docker, you rebuild your image instead. This process includes `bundle install` and updates `Gemfile.lock`.
 
 ```console
 $ docker build -t my-great-app .
 ```
-
-You remember you copied your `Gemfile` to the image.
