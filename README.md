@@ -18,7 +18,7 @@ You need followings:
 
 You also need Rails image for Docker, but it will be downloaded automatically.
 
-# Create new Rails app
+# Create a new Rails app
 
 1. Prepare a directory for the app
 2. Run `rails new` in Docker
