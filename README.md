@@ -22,7 +22,7 @@ You also need Rails image for Docker, but it will be downloaded automatically.
 
 1. Prepare a directory for the app
 2. Run `rails new` in Docker
-3. Build an image for your app where gems are installed
+3. Describe an image for your app where gems are installed
 4. Database configuration
 5. Prepare Docker component file with database specification
 6. Ignore database files
@@ -132,13 +132,9 @@ $ ls -a app/
 ..  Gemfile     README.md     app       config  db         log  test    vendor
 ```
 
-## Build an image for your app where gems are installed
+## Describe an image for your app where gems are installed
 
-1. Prepare `Dockerfile` file
-2. Build an image for your Rails app
-
-Create a new file named `Dockerfile`, which has no extension.
-The content is this:
+Create a new file named `Dockerfile`, which has no extension:
 
 ```dockerfile
 FROM rails:5.0.1
@@ -152,39 +148,6 @@ COPY ./app/Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 CMD rm /app/tmp/pids/server.pid ; rails s
 ```
-
-Note that `Gemfile` and `Gemfile.lock` will exist in the image, which means you have to regenerate the image when you update them.
-
-Build your own Docker image for your project.
-
-```console
-$ docker build -t my-great-app .
-Sending build context to Docker daemon  114.7kB
-Step 1/7 : FROM rails:5.0.1
- ---> 660f41442a27
-Step 2/7 : RUN mkdir /app
- ---> Using cache
- ---> b042a7c533af
-Step 3/7 : WORKDIR /app
- ---> Using cache
- ---> 18af0824ba73
-Step 4/7 : COPY ./app/Gemfile /app/Gemfile
- ---> Using cache
- ---> 7702588d4093
-Step 5/7 : COPY ./app/Gemfile.lock /app/Gemfile.lock
- ---> Using cache
- ---> addbff4bbfe5
-Step 6/7 : RUN bundle install
- ---> Using cache
- ---> 4bb0351be61a
-Step 7/7 : CMD rm /app/tmp/pids/server.pid ; rails s
- ---> Using cache
- ---> 75020dc3c2e6
-Successfully built 75020dc3c2e6
-Successfully tagged my-great-app:latest
-```
-
-This may take long time. It depends on your network since `bundle install` runs here and it download gems.
 
 ## Database configuration
 
@@ -214,7 +177,7 @@ version: "3"
 services:
 
   rails:
-    image: my-great-app
+    build: ./
     ports:
       - "3000:3000"
     volumes:
@@ -293,9 +256,8 @@ You may need the 2nd console to run commands like `rails g scaffold`.
 These steps should be described in the project's README documentation.
 
 1. Clone the repository
-2. Build an image
-3. Up
-4. Initialize database
+2. Up
+3. Initialize database
 
 Let's say the project is named "the-great-app".
 
@@ -305,16 +267,6 @@ Let's say the project is named "the-great-app".
 $ git clone ...
 $ cd the-great-app
 ```
-
-## Build an image
-
-```console
-$ docker build -t the-great-app .
-```
-
-The name `the-great-app` has to match with the image name in `docker-compose.yml`.
-
-It would be better to make the image available in DockerHub so that this step would be skipped.
 
 ## Up
 
@@ -393,8 +345,19 @@ Finished in 1.302024s, 5.3762 runs/s, 6.9123 assertions/s.
 
 When you update `Gemfile`, you used to run `bundle install`.
 
-With Docker, you rebuild your image instead. This process includes `bundle install` and updates `Gemfile.lock`.
+With Docker, you need to rebuild your image instead. This process includes `bundle install` and updates `Gemfile.lock`.
+
+To rebuild, give `--force-recreate` option.
 
 ```console
-$ docker build -t my-great-app .
+$ docker-compose.exe up --build
+```
+
+Otherwise you would see an error like this:
+
+```
+rails_1  | /usr/local/lib/ruby/gems/2.3.0/gems/bundler-1.13.7/lib/bundler/resolver.rb:366:in `block in verify_gemfile_dependencies_are_found!': Could not find gem 'carrierwave' in any of the gem sources listed in your Gemfile or available on this machine. (Bundler::GemNotFound)
+rails_1  |      from /usr/local/lib/ruby/gems/2.3.0/gems/bundler-1.13.7/lib/bundler/resolver.rb:341:in `each'
+...
+rails_1  |      from /usr/local/bundle/bin/rails:15:in `<main>'
 ```
