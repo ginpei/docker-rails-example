@@ -211,8 +211,13 @@ If you use git, create `.gitignore`  and ignore database files:
 $ docker-compose up
 ```
 
-This takes longer time for the first time to create database files in `db`.
-Take your time while it is busy.
+This takes longer time for the first time.
+
+First, it builds an image from your `Dockerfile` for your project. This process includes `bundle install`.
+
+Second, after starting, MySQL creates database files in `db`.
+
+Take your time until your console gets calm down.
 
 ## Stop them (once)
 
