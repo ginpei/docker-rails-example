@@ -8,7 +8,7 @@ Replace `` `pwd` `` with `%CD%` in your Command Prompt or PowerShell.
 
 Otherwise you would see an error like following:
 
-> docker: Error response from daemon: create \`pwd\`/wp: “`pwd`/wp” includes invalid characters for a local volume name, only “[a-zA-Z0-9][a-zA-Z0-9_.-]” are allowed. If you intended to pass a host directory, use absolute path.
+> docker: Error response from daemon: create \`pwd\`/app: “`pwd`/app” includes invalid characters for a local volume name, only “[a-zA-Z0-9][a-zA-Z0-9_.-]” are allowed. If you intended to pass a host directory, use absolute path.
 
 # Preparation
 
