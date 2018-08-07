@@ -27,9 +27,10 @@ You also need Rails image for Docker, but it will be downloaded automatically.
 5. Prepare Docker component file with database specification
 6. Ignore database files
 7. Up them
-8. Open another console
-9. Initialize database
-10. Open in browser
+8. Stop them (once)
+9. Open another console
+10. Initialize database
+11. Open in browser
 
 We name the app "my-great-app".
 Please do not forget replace this with your great app's name.
@@ -212,6 +213,8 @@ $ docker-compose up
 
 This takes longer time for the first time to create database files in `db`.
 Take your time while it is busy.
+
+## Stop them (once)
 
 Try to stop the containers by holding `Ctrl-C` in the console. Closing process may take time. Be patient.
 
