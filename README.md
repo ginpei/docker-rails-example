@@ -259,43 +259,6 @@ And open [`http://localhost:3000/`](http://localhost:3000/).
 
 You may need the 2nd console to run commands like `rails g scaffold`.
 
-# Up somebody's project
-
-These steps should be described in the project's README documentation.
-
-1. Clone the repository
-2. Up
-3. Initialize database
-
-Let's say the project is named "the-great-app".
-
-## Clone the repository
-
-```console
-$ git clone ...
-$ cd the-great-app
-```
-
-## Up
-
-```console
-$ docker-component up
-```
-
-Hold `Ctrl-C` to stop.
-
-## Initialize database
-
-Open another console and run:
-
-```console
-$ docker-component exec rails rake db:create db:migrate db:seed
-```
-
-## Open in browser
-
-Open [`http://localhost:3000/`](http://localhost:3000/) and start your job.
-
 # Update your project
 
 ## General idea
@@ -369,3 +332,40 @@ rails_1  |      from /usr/local/lib/ruby/gems/2.3.0/gems/bundler-1.13.7/lib/bund
 ...
 rails_1  |      from /usr/local/bundle/bin/rails:15:in `<main>'
 ```
+
+# Up somebody's project
+
+These steps should be described in the project's README documentation.
+
+1. Clone the repository
+2. Up
+3. Initialize database
+
+Let's say the project is named "the-great-app".
+
+## Clone the repository
+
+```console
+$ git clone ...
+$ cd the-great-app
+```
+
+## Up
+
+```console
+$ docker-component up
+```
+
+Hold `Ctrl-C` to stop.
+
+## Initialize database
+
+Open another console and run:
+
+```console
+$ docker-component exec rails rake db:create db:migrate db:seed
+```
+
+## Open in browser
+
+Open [`http://localhost:3000/`](http://localhost:3000/) and start your job.
