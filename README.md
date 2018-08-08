@@ -1,6 +1,6 @@
-# Docker & Rails example
+# Rails on Docker example and tutorial
 
-This is an example to build and run your Rails app on Docker.
+This is an example and tutorial to build and run your Rails app on Docker.
 
 ## For Windows users
 
@@ -16,13 +16,11 @@ You need followings:
 
 - Docker installed
 
-You also need Rails image for Docker, but it will be downloaded automatically.
-
 # Create a new Rails app
 
 1. Prepare a directory for the app
 2. Run `rails new` in Docker
-3. Describe an image for your app where gems are installed
+3. Describe a Docker image for your app where gems are installed
 4. Database configuration
 5. Prepare Docker component file with database specification
 6. Ignore database files
@@ -60,9 +58,13 @@ We will be working here.
 
 ## Run `rails new` in Docker
 
+This step can be broken down into smaller steps.
+
 1. Start docker container
-2. Run the command
-3. Exit from docker container
+2. `rails new`
+3. Create empty `Gemfile.lock`
+4. Expose created files to your host computer
+5. Exit from docker container
 
 First of all, run a docker container:
 
@@ -195,7 +197,7 @@ services:
 ```
 
 This prepares a database for root user without password.
-It's dangerous in some cases but no problem for development.
+It's unsafe in some cases but you know this is only for development.
 
 ## Ignore database files
 
@@ -211,7 +213,7 @@ If you use git, create `.gitignore`  and ignore database files:
 $ docker-compose up
 ```
 
-This takes longer time for the first time.
+This takes longer time for the first time too.
 
 First, it builds an image from your `Dockerfile` for your project. This process includes `bundle install`.
 
@@ -233,7 +235,7 @@ While they are running, you need to open a new console to work.
 
 ## Initialize database
 
-Type this to create database in the 2nd console while running `docker-compose up` in the 1st one.
+In the 2nd console just you opened, type following line to create database while running `docker-compose up` in the 1st one.
 
 ```console
 $ docker-compose exec rails rake db:create
@@ -324,7 +326,7 @@ To rebuild, give `--force-recreate` option.
 $ docker-compose.exe up --build
 ```
 
-Otherwise you would see an error like this:
+Otherwise you would see an error like this (you could miss it because the log is too long to read):
 
 ```
 rails_1  | /usr/local/lib/ruby/gems/2.3.0/gems/bundler-1.13.7/lib/bundler/resolver.rb:366:in `block in verify_gemfile_dependencies_are_found!': Could not find gem 'carrierwave' in any of the gem sources listed in your Gemfile or available on this machine. (Bundler::GemNotFound)
@@ -338,19 +340,18 @@ rails_1  |      from /usr/local/bundle/bin/rails:15:in `<main>'
 These steps should be described in the project's README documentation.
 
 1. Clone the repository
-2. Up
+2. Up Docker containers
 3. Initialize database
-
-Let's say the project is named "the-great-app".
+4. Start your job
 
 ## Clone the repository
 
 ```console
 $ git clone ...
-$ cd the-great-app
+$ cd xxx
 ```
 
-## Up
+## Up Docker containers
 
 ```console
 $ docker-component up
@@ -366,6 +367,8 @@ Open another console and run:
 $ docker-component exec rails rake db:create db:migrate db:seed
 ```
 
-## Open in browser
+## Start your job
 
-Open [`http://localhost:3000/`](http://localhost:3000/) and start your job.
+Open [`http://localhost:3000/`](http://localhost:3000/) (and another console maybe) and start your job.
+
+Let's rock!
