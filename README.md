@@ -1,5 +1,7 @@
 # Rails on Docker example and tutorial
 
+[→日本語🇯🇵](./README.ja.md)
+
 This is an example and tutorial to build and run your Rails app on Docker.
 
 ## For Windows users
