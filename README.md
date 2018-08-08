@@ -227,6 +227,14 @@ Take your time until your console gets calm down.
 
 Try to stop the containers by holding `Ctrl-C` in the console. Closing process may take time. Be patient.
 
+```console
+Gracefully stopping... (press Ctrl+C again to force)
+Stopping docker-rails-example_rails_1   ... done
+Stopping docker-rails-example_db_1      ... done
+
+$
+```
+
 If you get how to up and end it, up again and move on to the next.
 
 ## Open another console

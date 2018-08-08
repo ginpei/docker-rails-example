@@ -229,6 +229,14 @@ $ docker-compose up
 
 コンソールで `Ctrl-C` を押して止めてみてください。終了にもまた時間がかかります。ちょっとまっててね。
 
+```console
+Gracefully stopping... (press Ctrl+C again to force)
+Stopping docker-rails-example_rails_1   ... done
+Stopping docker-rails-example_db_1      ... done
+
+$
+```
+
 起動と終了のやり方を覚えたら、起動し直して、次へ進みましょう。
 
 ## 別のコンソールを開く
