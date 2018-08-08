@@ -275,7 +275,7 @@ Let's say you want to `echo` here. You would use this:
 $ docker-compose exec rails echo Hello from Docker container!
 ```
 
-Please remember you have to type this command into your 2nd console, next the 1st one where your `docker-component up` is running.
+Please remember you have to type this command into your 2nd console, next the 1st one where your `docker-compose up` is running.
 
 ## When you want to generate a scaffold
 
@@ -356,7 +356,7 @@ $ cd xxx
 ## Up Docker containers
 
 ```console
-$ docker-component up
+$ docker-compose up
 ```
 
 Hold `Ctrl-C` to stop.
@@ -366,7 +366,7 @@ Hold `Ctrl-C` to stop.
 Open another console and run:
 
 ```console
-$ docker-component exec rails rake db:create db:migrate db:seed
+$ docker-compose exec rails rake db:create db:migrate db:seed
 ```
 
 ## Start your job

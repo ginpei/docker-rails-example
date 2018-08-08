@@ -279,7 +279,7 @@ $ docker-compose up
 $ docker-compose exec rails echo Hello from Docker container!
 ```
 
-このとき `docker-component up` は既に実行中で、それとは別のコンソールを開いて実行する必要があるということを忘れないでください。
+このとき `docker-compose up` は既に実行中で、それとは別のコンソールを開いて実行する必要があるということを忘れないでください。
 
 ## scaffold生成したいときは
 
@@ -360,7 +360,7 @@ $ cd xxx
 ## Dockerコンテナー起動
 
 ```console
-$ docker-component up
+$ docker-compose up
 ```
 
 `Ctrl-C` で終了。
@@ -370,7 +370,7 @@ $ docker-component up
 別コンソールを開き、以下を実行。
 
 ```console
-$ docker-component exec rails rake db:create db:migrate db:seed
+$ docker-compose exec rails rake db:create db:migrate db:seed
 ```
 
 ## 作業開始
