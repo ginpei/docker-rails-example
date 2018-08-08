@@ -18,6 +18,42 @@ DockerでRailsアプリを作ったり動かしたりするサンプルとチュ
 
 - Dockerインストール
 
+# このサンプルを試す
+
+リポジトリをクローンして、
+
+```console
+$ git clone git@github.com:ginpei/docker-rails-example.git
+$ cd docker-rails-example/
+```
+
+Dockerコンテナーを起動して、
+
+```console
+$ docker-compose up
+```
+
+別のコンソールを開いてからDBを初期化して、
+
+```console
+$ cd docker-rails-example/
+$ docker-compose exec rails rake db:create db:migrate db:seed
+```
+
+ブラウザーで開きます。
+
+- [`http://localhost:3000/`](http://localhost:3000/)
+
+遊び終わったら、 `docker-compose` 実行中のコンソールで `Ctrl + C` してすこし待つと止まります。
+
+```console
+Gracefully stopping... (press Ctrl+C again to force)
+Stopping docker-rails-example_rails_1   ... done
+Stopping docker-rails-example_db_1      ... done
+
+$
+```
+
 # 新規にRailsアプリを作成
 
 1. アプリ用ディレクトリーを用意

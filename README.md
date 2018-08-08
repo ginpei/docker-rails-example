@@ -18,6 +18,42 @@ You need followings:
 
 - Docker installed
 
+# Try this example
+
+Clone this repository.
+
+```console
+$ git clone git@github.com:ginpei/docker-rails-example.git
+$ cd docker-rails-example/
+```
+
+Up Docker container.
+
+```console
+$ docker-compose up
+```
+
+Open another console and run this to initialize database.
+
+```console
+$ cd docker-rails-example/
+$ docker-compose exec rails rake db:create db:migrate db:seed
+```
+
+Open in browser.
+
+- [`http://localhost:3000/`](http://localhost:3000/)
+
+To stop, in the console where `docker-compose` is running, hit `Ctrl + C` and wait.
+
+```console
+Gracefully stopping... (press Ctrl+C again to force)
+Stopping docker-rails-example_rails_1   ... done
+Stopping docker-rails-example_db_1      ... done
+
+$
+```
+
 # Create a new Rails app
 
 1. Prepare a directory for the app
